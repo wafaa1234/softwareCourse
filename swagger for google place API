@@ -1,0 +1,147 @@
+swagger: '2.0'
+info:
+ description: >-
+   This is a simple medical transportation service API by composite two openAPI google place API and facebook API. You can find out more about    
+   google place API at [https://developers.google.com/places/]  For this sample, you can generate the api key `Active-key` to test the authorization  filters based on platform. 
+ version: 1.0.0
+ title: google places
+host: maps.googleapis.com
+tags:
+ - name: places
+   description: Everything about your Pets
+   externalDocs:
+     url: 'https://maps.googleapis.com'
+schemes:
+ - https
+paths:
+ /maps/api/place/nearbysearch/json:
+   get:
+     tags:
+       - Places
+     summary: Finds Pets by status
+     description: Multiple status values can be provided with comma separated strings
+     operationId: "places"
+     produces:
+       - application/json
+     parameters:
+       - name: location
+         in: query
+         description: Status values that need to be considered for filter
+         required: true
+         type: string
+         default: -33.8670,151.1957
+       - name: radius
+         in: query
+         description: Status values that need to be considered for filter
+         required: true
+         type: integer
+         default: 4000
+       - name: type
+         in: query
+         description: Status values that need to be considered for filter
+         required: true
+         type: string
+         default: hospital
+       - name: key
+         in: query
+         description: Status values that need to be considered for filter
+         required: true
+         type: string
+         default: AIzaSyAruSAj9XPFSf2aDMUag39O-81FnLeP_A0
+     responses:
+       '200':
+         description: successful operation
+         schema:
+           $ref: '#/definitions/Places'
+definitions:
+ Places:
+   type: object
+   properties:
+     html_attributions:
+       type: array
+       items:
+         type: string
+     next_page_token:
+       type: string
+     results:
+       type: array
+       items:
+         $ref: '#/definitions/ResultItems'
+     status:
+       type: string
+ Goemetry:
+   type: object
+   properties:
+     location:
+       $ref: '#/definitions/Location'
+     viewport:
+       $ref: '#/definitions/ViewPort'
+ ResultItems:
+   type: object
+   properties:
+     geometry:
+       $ref: '#/definitions/Goemetry'
+     icon:
+       type: string
+     id:
+       type: string
+     name:
+       type: string
+     opening_hours:
+       $ref: '#/definitions/OpeningHours'
+     place_id:
+       type: string
+     rating:
+       type: number
+       format: float
+     reference:
+       type: string
+     scope:
+       type: string
+     types:
+       type: array
+       items:
+         type: string
+     vicinity:
+       type: string
+ Location:
+   type: object
+   properties:
+     lat:
+       type: number
+       format: float
+     lng:
+       type: number
+       format: float
+ ViewPort:
+   type: object
+   properties:
+     northeast:
+       $ref: '#/definitions/WestEast'
+     southwest:
+       $ref: '#/definitions/WestEast'
+ WestEast:
+   type: object
+   properties:
+     lat:
+       type: number
+       format: float
+     lng:
+       type: number
+       format: float
+ OpeningHours:
+   type: object
+   properties:
+     open_now:
+       type: boolean
+     weekday_text:
+       type: array
+       items:
+         type: string
+externalDocs:
+ description: Find out more about Swagger
+ url: 'https://maps.googleapis.com'
+ 
+ 
+ 
+ 
