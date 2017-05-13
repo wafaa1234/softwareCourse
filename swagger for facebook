@@ -1,0 +1,92 @@
+swagger: '2.0'
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+ description: >-
+  the second API is facebook by allowing of patient to login and post on his timeline to mention that he will go to the hospital. the message script will be as follow "I will go to the hospital_name", related to hospital name this will be taken based on click on event on nearby hospital in google map. You can find out more about    
+   google place API at [https://developers.facebook.com/] For this sample, you can generate the App_token to test the authorization from [https://developers.facebook.com/tools/explorer]
+    note: before you generated the app-token you should put tick on all permission fields.
+ version: 1.0.0
+ title: facebook API
+ ##########################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+# host: graph.facebook.com
+# basePath: /v2.9
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+################################################################################
+#                                  Security                                    #
+################################################################################
+securityDefinitions:
+  key:
+    type: apiKey
+    in: query
+    name: access_token
+################################################################################
+#                                   Parameters                                 #
+################################################################################
+parameters:
+  search-type:
+    name: type
+    in: query
+    description: 地區資訊
+    type: string
+    required: true
+    enum:
+      - place
+      - event
+    
+################################################################################
+#                                   Paths                                      #
+################################################################################
+paths:
+  /me:
+    get:
+      parameters:    
+        - name: fields
+          in: query
+          type: array
+          items:
+            type: string
+          default: [id,first_name,last_name,name]
+          description: Query keyword
+      security:
+        - key: []
+      responses:
+         200:
+          description: The user object
+          schema:
+            type: object
+  /me/feed:
+    parameters:
+      - $ref: '#/parameters/search-type'
+    post:
+      parameters:    
+        - name: message
+          in: query
+          type: string
+          default: i will go to the (hospital_name)
+          description: inform patient's friends that he will go to the hpspital
+      security:
+        - key: []
+      responses:
+        200:
+          description: The user object
+          schema:
+            type: object
+# Added by API Auto Mocking Plugin
+# host: graph.facebook.com
+# basePath:
+# Added by API Auto Mocking Plugin
+# host: graph.facebook.com
+# basePath:
+# Added by API Auto Mocking Plugin
+host: graph.facebook.com
+basePath: /v2.9
