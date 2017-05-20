@@ -1,0 +1,64 @@
+swagger: '2.0'
+info:
+ description: >-
+   To get current location of patient by converting IP to latitude and longitude   
+   IP Geolocation API at [http://ip-api.com/]  
+host: ip.api.com
+tags:
+     url: 'http://ip-api.com'
+schemes:
+ - http
+paths:
+ /json:
+   get:
+     tags:
+       - Places
+     summary: Finds Pets by status
+     description: Multiple status values can be provided with comma separated strings
+     operationId: "places"
+     produces:
+       - application/json
+     responses:
+       '200':
+         description: successful operation
+         schema:
+           $ref: '#/definitions/Places'
+       type: array
+       items:
+         type: string
+     next_page_token:
+       type: string
+     results:
+       type: array
+       items:
+           as:
+           type: string
+           city:
+           type: string
+           country:
+           type: string
+           countryCode:
+           type: string
+           isp:
+           type: string
+           lat:
+           type: float  
+           lon:
+           type: float   
+           org: 
+           type: string
+           query: 
+           type: string
+           region: 
+           type: string
+           regionName: 
+           type: string
+           status: 
+           type: string
+           timezone: 
+           type: string
+           zip: 
+           type: string
+           
+ description: Find out more about Swagger
+ url: 'http://ip-api.com'
