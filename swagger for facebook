@@ -5,16 +5,14 @@ swagger: '2.0'
 ################################################################################
 info:
  description: >-
-  the second API is facebook by allowing of patient to login and post on his timeline to mention that he will go to the hospital. the message script will be as follow "I will go to the hospital_name", related to hospital name this will be taken based on click on event on nearby hospital in google map. You can find out more about    
-   google place API at [https://developers.facebook.com/] For this sample, you can generate the App_token to test the authorization from [https://developers.facebook.com/tools/explorer]
-    note: before you generated the app-token you should put tick on all permission fields.
- version: 1.0.0
- title: facebook API
+  the second API is nexmo for sending SMS indicates that the patient will go to the pick up hospital for more information [https://docs.nexmo.com/messaging/sms-api]
+    note: we attacked video that illustrates how to sing up to register the phone number and generate a secret key. 
+ title: nexmo API
  ##########################################################
 #                  Host, Base Path, Schemes and Content Types                  #
 ################################################################################
 # host: graph.facebook.com
-# basePath: /v2.9
+# basePath: ''
 schemes:
   - https
 produces:
@@ -47,40 +45,33 @@ parameters:
 #                                   Paths                                      #
 ################################################################################
 paths:
-  /me:
+  /sms/json:
     get:
       parameters:    
-        - name: fields
+        - name : to
           in: query
-          type: array
-          items:
-            type: string
-          default: [id,first_name,last_name,name]
-          description: Query keyword
+          type: string
+          default: '441632960961'
+          description: phone number who will recieve SMS
+        - name : from
+          in: query
+          type: string
+          default: '441632960961'
+          description: phone number who will send SMS
+        - name : text
+          in: query
+          type: string
+          default: 'I will go to this hospital'
+          description: text message form
       security:
-        - key: []
+        - key: 'API_KEY'
+        - secret: 'API_SECRET'
       responses:
          200:
           description: The user object
           schema:
             type: object
-  /me/feed:
-    parameters:
-      - $ref: '#/parameters/search-type'
-    post:
-      parameters:    
-        - name: message
-          in: query
-          type: string
-          default: i will go to the (hospital_name)
-          description: inform patient's friends that he will go to the hpspital
-      security:
-        - key: []
-      responses:
-        200:
-          description: The user object
-          schema:
-            type: object
+ 
 # Added by API Auto Mocking Plugin
 # host: graph.facebook.com
 # basePath:
@@ -88,5 +79,5 @@ paths:
 # host: graph.facebook.com
 # basePath:
 # Added by API Auto Mocking Plugin
-host: graph.facebook.com
-basePath: /v2.9
+host: rest.nexmo.com
+basePath: 
