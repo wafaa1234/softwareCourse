@@ -11,7 +11,7 @@ info:
  ##########################################################
 #                  Host, Base Path, Schemes and Content Types                  #
 ################################################################################
-# host: graph.facebook.com
+# host: rest.nexmo.com
 # basePath: ''
 schemes:
   - https
@@ -19,27 +19,6 @@ produces:
   - application/json
 consumes:
   - application/json
-################################################################################
-#                                  Security                                    #
-################################################################################
-securityDefinitions:
-  key:
-    type: apiKey
-    in: query
-    name: access_token
-################################################################################
-#                                   Parameters                                 #
-################################################################################
-parameters:
-  search-type:
-    name: type
-    in: query
-    description: 地區資訊
-    type: string
-    required: true
-    enum:
-      - place
-      - event
     
 ################################################################################
 #                                   Paths                                      #
