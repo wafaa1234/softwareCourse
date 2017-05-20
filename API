@@ -1,0 +1,8 @@
+to convert IP to latitude and longitude 
+http://medservice.pe.hu/gps
+
+google place API based on current location
+http://medservice.pe.hu/map
+
+send SMS API after register on https://dashboard.nexmo.com/ and enter to from mobile numbers
+http://medservice.pe.hu/sendSMS/mobile_no
