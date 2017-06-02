@@ -1,1 +1,3 @@
 # softwareCourse
+
+Recently, human relies on the internet more than any time. Web services are the solution for every aspect in our lives. Messenger, social media, e-shopping and much more activities depending on internet to be achieved. And to cope with the recent activities, more web services are created to ease the human lives. In this proposal we will introduce a Medical Service MS. MS helps patients in case of emergency to reach the closest hospital based on his location. The composition of Google place, Geolocation and nexmo web services is done in order to achieve the purpose. It locates the closest hospital around the patient then inform his family that he should go to this hospital.
